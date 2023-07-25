@@ -16,8 +16,9 @@ const questions = [
 // 使用动态import()导入inquirer.js
 (async () => {
   const inquirer = await import("inquirer");
+  const ora = await import("ora");
 
-  console.log(inquirer);
+  console.log(ora);
 
   // 启动Inquirer询问
   inquirer.default.prompt(questions).then((answers) => {
@@ -26,10 +27,11 @@ const questions = [
     // ...剩下的代码保持不变
 
     // 打包Vue项目
-    console.log("正在打包Vue项目...");
+
     const { exec } = require("child_process");
 
-    console.log(exec.length);
+    const spinner = ora.default("Loading unicorns").start();
+
     exec("npm run build", (error, stdout, stderr) => {
       console.log(
         "🚀 ~ file: pack-and-commit.js:32 ~ exec ~ error, stdout, stderr:",
@@ -37,6 +39,8 @@ const questions = [
         stdout,
         stderr
       );
+
+      spinner.stop();
       if (error) {
         console.error(`打包时出现错误：${error.message}`);
         return;
