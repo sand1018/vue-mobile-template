@@ -32,13 +32,13 @@ const questions = [
 
     const spinner = ora.default("Loading unicorns").start();
 
-    exec("npm run build", (error, stdout, stderr) => {
+    exec("npm run build", (error, stdout) => {
       spinner.stop();
       if (error) {
         console.error(`打包时出现错误：${error.message}`);
         return;
       }
-      console.log("Vue项目打包成功。");
+      console.log(stdout);
 
       // 将打包后的文件添加到Git仓库
       console.log("正在将打包后的文件添加到Git...");
