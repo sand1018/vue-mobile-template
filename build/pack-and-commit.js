@@ -33,13 +33,6 @@ const questions = [
     const spinner = ora.default("Loading unicorns").start();
 
     exec("npm run build", (error, stdout, stderr) => {
-      console.log(
-        "🚀 ~ file: pack-and-commit.js:32 ~ exec ~ error, stdout, stderr:",
-        error,
-        stdout,
-        stderr
-      );
-
       spinner.stop();
       if (error) {
         console.error(`打包时出现错误：${error.message}`);
